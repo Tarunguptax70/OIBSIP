@@ -1,0 +1,123 @@
+/* Main Window Background */
+QMainWindow, QWidget {
+    background-color: #121212;
+    color: #E0E0E0;
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+}
+
+/* Tabs */
+QTabWidget::pane {
+    border: 1px solid #333;
+    background: #1E1E1E;
+    border-radius: 8px;
+    margin-top: -1px;
+}
+
+QTabBar::tab {
+    background: #1E1E1E;
+    color: #BBBBBB;
+    padding: 10px 20px;
+    margin-right: 4px;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    font-weight: bold;
+    border: 1px solid #333;
+}
+
+QTabBar::tab:selected {
+    background: #2C2C2C;
+    color: #03DAC6; /* Neon Teal */
+    border-bottom: 2px solid #03DAC6;
+}
+
+QTabBar::tab:hover:!selected {
+    background: #252525;
+    color: #FFFFFF;
+}
+
+/* Buttons */
+QPushButton {
+    background-color: #BB86FC; /* Neon Purple */
+    color: #000000;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+QPushButton:hover {
+    background-color: #9965f4;
+}
+
+QPushButton:pressed {
+    background-color: #03DAC6; /* Neon Teal */
+    color: black;
+}
+
+/* Input Fields */
+QLineEdit, QComboBox {
+    padding: 8px;
+    border: 2px solid #333;
+    border-radius: 8px;
+    background: #2C2C2C;
+    color: #FFFFFF;
+    selection-background-color: #BB86FC;
+    selection-color: #000000;
+}
+
+QLineEdit:focus, QComboBox:focus {
+    border: 2px solid #03DAC6; /* Neon Teal */
+}
+
+/* Labels */
+QLabel {
+    color: #E0E0E0;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 100); /* Semi-transparent background for readability */
+    padding: 2px 4px;
+    border-radius: 4px;
+}
+
+/* Table */
+QTableWidget {
+    border: 1px solid #333;
+    gridline-color: #333;
+    background-color: rgba(30, 30, 30, 150); /* Semi-transparent */
+    alternate-background-color: rgba(37, 37, 37, 150);
+    color: #E0E0E0;
+}
+
+QHeaderView::section {
+    background-color: #2C2C2C;
+    color: #03DAC6;
+    padding: 8px;
+    border: 1px solid #333;
+    font-weight: bold;
+}
+
+QTableWidget::item {
+    padding: 5px;
+}
+
+QTableWidget::item:selected {
+    background-color: #333333;
+    color: #03DAC6;
+}
+
+/* Message Box */
+QMessageBox {
+    background-color: #121212;
+    color: #E0E0E0;
+}
+
+QMessageBox QLabel {
+    color: #E0E0E0;
+}
+
+QMessageBox QPushButton {
+    background-color: #BB86FC;
+    color: #000000;
+    min-width: 80px;
+}
