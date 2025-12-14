@@ -1,0 +1,432 @@
+/* General Body Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #060010;
+    margin: 0;
+    padding: 0;
+    position: relative; /* For absolute positioning of children */
+}
+
+.main-content {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    width: 100%;
+    pointer-events: none; /* Allow events to pass through */
+    padding-top: 70px; /* Add padding for the fixed header */
+    box-sizing: border-box;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 20px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+    z-index: 10;
+    color: white;
+    pointer-events: auto; /* Make header interactive */
+    gap: 20px;
+}
+
+header > span {
+    flex-grow: 1;
+    text-align: left;
+}
+
+.form {
+    width: 100%;
+    max-width: 400px;
+}
+
+h1, h2, h3, h4, h5 {
+    color: #eee;
+}
+
+/* Form Styles for Dark Background */
+.dark-bg-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    text-align: center;
+    pointer-events: auto; /* Make form interactive */
+    background-color: rgba(10, 0, 20, 0.5);
+    padding: 40px;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+}
+
+.dark-bg-form .form-field {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+
+.dark-bg-form .form-field label {
+    margin-bottom: 5px;
+    color: #ccc;
+}
+
+.dark-bg-form input[type="text"],
+.dark-bg-form input[type="password"] {
+    padding: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    font-size: 16px;
+    background-color: rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+.dark-bg-form .input-group {
+    position: relative;
+}
+
+.dark-bg-form .input-group input {
+    width: 100%;
+    box-sizing: border-box;
+    padding-right: 80px;
+}
+
+.dark-bg-form .input-group button {
+    position: absolute;
+    right: 5px;
+    top: 50%;
+    transform: translateY(-50%);
+    height: 80%;
+    background: transparent;
+    border: none;
+    color: #00aaff;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* General Button Styles */
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    text-decoration: none; /* For 'a' tags styled as buttons */
+    color: white; /* Default text color for buttons */
+    display: inline-block; /* For 'a' tags */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: white;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.btn-danger {
+    background-color: #dc3545;
+    color: white;
+}
+
+.btn-danger:hover {
+    background-color: #c82333;
+}
+
+
+.btn-container {
+    display: flex;
+    gap: 10px;
+}
+
+/* Account Page Styles */
+.account-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.current-pic {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+}
+
+.pic-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.pic-option {
+    width: 60px;
+    height: 60px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    transition: border-color 0.3s;
+}
+
+.pic-option:hover {
+    border-color: #00aaff;
+}
+
+.pic-option input {
+    display: none;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+header .profile-container {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    flex-shrink: 0;
+}
+
+
+/* Chat Room Styles */
+.message-box {
+  width: 100%;
+  max-width: 800px;
+  height: calc(100vh - 90px);
+  background-color: rgba(10, 0, 20, 0.5);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  pointer-events: auto; /* Make content interactive */
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+}
+
+.bottom-link {
+    margin-top: 20px;
+    color: #ccc;
+}
+
+.bottom-link a {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+.messages {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  overflow-x: hidden;
+  background-color: transparent;
+}
+
+.message {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 15px;
+    gap: 10px;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.profile-pic {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0;
+}
+
+.profile-pic svg {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+}
+
+.message .text {
+    padding: 10px 15px;
+    border-radius: 15px;
+    overflow-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-shrink: 1;
+    min-width: 0;
+    color: #eee;
+}
+
+.message .text > div {
+    display: block;
+}
+
+.message strong {
+    color: #87CEEB; /* Light Sky Blue for names */
+    margin-right: 5px;
+}
+
+.message .muted {
+    font-size: 0.8em;
+    color: #aaa;
+    margin-left: auto;
+    padding-top: 5px;
+    align-self: flex-end;
+}
+
+.message.sent {
+    flex-direction: row-reverse;
+}
+
+.message.sent .text {
+    background-color: rgba(0, 123, 255, 0.3);
+    align-items: flex-end;
+}
+
+.message.received .text {
+    background-color: rgba(108, 117, 125, 0.3);
+}
+
+.inputs {
+  display: flex;
+  padding: 10px;
+  background-color: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+#message {
+    flex-grow: 1;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 20px;
+    margin-right: 10px;
+}
+
+#send-btn {
+    padding: 10px 20px;
+}
+
+/* Error Message */
+.error {
+    color: red;
+    margin-bottom: 10px;
+}
+
+:root {
+  --col-gap: 2%;
+  --row-gap: 2%;
+  --cube-perspective: 99999999px;
+  --cube-face-border: 1px solid #fff;
+  --cube-face-bg: #060010;
+}
+
+.default-animation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  z-index: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.default-animation--scene {
+  display: grid;
+  width: 100%;
+  height: 100%;
+  column-gap: var(--col-gap);
+  row-gap: var(--row-gap);
+  perspective: var(--cube-perspective);
+  grid-template-columns: repeat(20, 1fr);
+  grid-auto-rows: 1fr;
+}
+
+.cube {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  transform-style: preserve-3d;
+}
+
+.cube::before {
+  content: '';
+  position: absolute;
+  top: -36px;
+  right: -36px;
+  bottom: -36px;
+  left: -36px;
+}
+
+.default-animation .cube-face {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--cube-face-bg);
+  border: var(--cube-face-border);
+  opacity: 1;
+}
+
+.default-animation .cube-face--top {
+  transform: translateY(-50%) rotateX(90deg);
+}
+
+.default-animation .cube-face--bottom {
+  transform: translateY(50%) rotateX(-90deg);
+}
+
+.default-animation .cube-face--left {
+  transform: translateX(-50%) rotateY(-90deg);
+}
+
+.default-animation .cube-face--right {
+  transform: translateX(50%) rotateY(90deg);
+}
+
+.default-animation .cube-face--back,
+.default-animation .cube-face--front {
+  transform: rotateY(-90deg) translateX(50%) rotateY(90deg);
+}
+
+ @media (max-width: 768px) {
+  .default-animation--scene {
+    width: 100%;
+  }
+}

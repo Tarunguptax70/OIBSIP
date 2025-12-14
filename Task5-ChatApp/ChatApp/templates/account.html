@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="profile-container">
+    <div class="profile-pic">
+        {{ users[session.name]['profile_pic'] | safe }}
+    </div>
+    <h3>Welcome, {{ session.name }}!</h3>
+</div>
+<div class="header-actions">
+    <a href="{{ url_for('lounge') }}" class="btn btn-secondary">Lounge</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="dark-bg-form account-container">
+    <h3>Account Settings</h3>
+
+    <h5>Your Current Profile Picture:</h5>
+    <div class="current-pic">
+        {{ users[session.name]['profile_pic'] | safe }}
+    </div>
+
+    <h5>Choose a new Picture:</h5>
+    <form method="post">
+        <div class="pic-grid">
+            {% for pic in profile_pics %}
+            <label class="pic-option">
+                <input type="radio" name="profile_pic" value="{{ loop.index0 }}" onchange="this.form.submit()">
+                {{ pic | safe }}
+            </label>
+            {% endfor %}
+        </div>
+    </form>
+    <div class="bottom-link">
+        <p><a href="{{ url_for('lounge') }}" class="btn btn-secondary">Back to Lounge</a></p>
+    </div>
+</div>
+{% endblock %}

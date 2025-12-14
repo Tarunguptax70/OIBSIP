@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<div class="profile-container">
+    <div class="profile-pic">
+        {{ user.profile_pic | safe }}
+    </div>
+    <h3>Welcome, {{ session.name }}!</h3>
+</div>
+<div class="header-actions">
+    <a href="{{ url_for('account') }}" class="btn btn-secondary">Account</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<form method="post" class="form dark-bg-form">
+    <h4>Join or Create a Chat Room</h4>
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+    <div class="form-field">
+        <label for="code">Room Code:</label>
+        <div class="input-group">
+            <input
+                type="text"
+                id="code"
+                placeholder="Enter a room code"
+                name="code"
+                value="{{ code }}"
+            />
+            <button type="submit" name="join" class="btn btn-secondary">Join</button>
+        </div>
+    </div>
+    <div class="btn-container" style="justify-content: center;">
+        <button type="submit" name="create" class="btn btn-primary">Create New Room</button>
+    </div>
+</form>
+{% endblock %}

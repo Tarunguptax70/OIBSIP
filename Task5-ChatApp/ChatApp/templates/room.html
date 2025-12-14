@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+
+{% block header %}
+<span>Chat Room: {{code}}</span>
+<div class="header-actions">
+    <a href="{{ url_for('account') }}" class="btn btn-secondary">Account</a>
+    <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
+</div>
+{% endblock %}
+
+{% block content %}
+<div class="message-box">
+  <div class="messages" id="messages"></div>
+  <div class="inputs">
+    <input
+      type="text"
+      placeholder="Message"
+      name="message"
+      id="message"
+    />
+    <button type="button" name="send" id="send-btn" class="btn btn-primary" onClick="sendMessage()">
+      Send
+    </button>
+    <button type="button" name="leave" id="leave-btn" class="btn btn-danger" onClick="leaveRoom()">
+        Leave Room
+    </button>
+  </div>
+</div>
+<script type="text/javascript">
+  var socketio = io();
+
+  socketio.on('connect_error', () => {
+    alert("Name already taken, please choose another.");
+    window.location.href = "{{ url_for('lounge') }}";
+  });
+  const messages = document.getElementById("messages");
+  const username = "{{ session.name }}";
+
+  const createMessage = (name, msg, time, profilePic) => {
+    const messageDiv = document.createElement("div");
+    messageDiv.classList.add("message");
+
+    // Add 'sent' or 'received' class
+    if (name === username) {
+        messageDiv.classList.add("sent");
+    } else {
+        messageDiv.classList.add("received");
+    }
+    
+    const default_pic = '<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="50" fill="#cccccc"/></svg>';
+    const picToDisplay = (profilePic && profilePic !== 'undefined' && profilePic !== 'None') ? profilePic : default_pic;
+
+    const content = `
+    <div class="profile-pic">${picToDisplay}</div>
+    <div class="text">
+        <div><strong>${name}</strong>: ${msg}</div>
+        <span class="muted">${time}</span>
+    </div>
+    `;
+    messageDiv.innerHTML = content;
+    messages.appendChild(messageDiv);
+    messages.scrollTop = messages.scrollHeight; // Auto-scroll to bottom
+  };
+
+  const leaveRoom = () => {
+    socketio.emit("leave", {}, () => {
+        window.location.href = "{{ url_for('lounge') }}";
+    });
+  }
+
+  socketio.on("message", (data) => {
+    createMessage(data.name, data.message, data.time, data.profile_pic);
+  });
+
+  const sendMessage = () => {
+    const messageInput = document.getElementById("message");
+    if (messageInput.value.trim() === "") return;
+    socketio.emit("message", { data: messageInput.value });
+    messageInput.value = "";
+  };
+
+  // Allow sending with Enter key
+  document.getElementById("message").addEventListener("keyup", function(event) {
+      if (event.key === "Enter") {
+          sendMessage();
+      }
+  });
+
+</script>
+{% for msg in messages %}
+<script type="text/javascript">
+  createMessage("{{msg.name}}", "{{msg.message}}", "{{msg.time}}", `{{msg.profile_pic | safe}}`);
+</script>
+{% endfor %}
+{% endblock %}
